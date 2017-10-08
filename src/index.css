@@ -1,3 +1,8 @@
+div.row {
+	margin:10px;
+	passing:10px;
+}
+
 
 span.seat {
 	border: 1px solid red;

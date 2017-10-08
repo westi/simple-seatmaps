@@ -1,40 +1,51 @@
 import React, { Component }
 from 'react';
 import './App.css';
-import Seat from './Seat';
+import Row from './Row';
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			seats: {
-				'1A': false,
-				'2A': false,
-				'3A': false,
-				'4A': false,
-				'5A': false,
-				'6A': false,
+			rows: {
+				'A': {
+					'1A': false,
+					'2A': false,
+					'3A': false,
+					'4A': false,
+					'5A': false,
+					'6A': false,
+				},
+				'B': {
+					'1B': false,
+					'2B': false,
+					'3B': false,
+					'4B': false,
+					'5B': false,
+					'6B': false,
+				},
 			},
 		};
 	};
 	
-	handleSeatSelection( seat ) {
-		const seats = this.state.seats;
-		seats[seat] = ! seats[seat];
-		this.setState( { seats: seats } );
+	handleSeatSelection( row, seat ) {
+		const rows = this.state.rows;
+		rows[row][seat] = ! rows[row][seat];
+		this.setState( { rows: rows } );
 	};
 
-	renderSingleSeat( position ) {
+	renderRow( row ) {
 		return (
-			<Seat
-				value = { position }
-				selectionState = { this.state.seats[position] ? 'selected' : 'unselected' }
-				onClick = { () => this.handleSeatSelection(position) }
+			<Row
+				row = { row }
+				seats = { this.state.rows[row] }
+				handleSeatSelection = { (row, position) => this.handleSeatSelection( row, position ) }
+				key = { 'row-' + row }
 			/>
 		);
 	}
 
 	render() {
-		const seats = Object.keys( this.state.seats ).map( ( key ) => { return this.renderSingleSeat( key ) } );
+		const seats = Object.keys( this.state.rows ).map( ( key ) => { return this.renderRow( key ) } );
 		return seats;
 	}
 }
