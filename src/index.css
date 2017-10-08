@@ -1,8 +1,31 @@
-div.row {
-	margin:10px;
-	passing:10px;
+div.seatblock.orchestra {
+	margin: 0 auto;
+	width: 100px; 
 }
 
+div.seatblock.left-balcony {
+	transform: rotate(45deg);
+	display: inline-block;
+	float: left;
+	margin-left: 35%;
+}
+
+div.seatblock.right-balcony {
+	transform: rotate(-45deg);
+	display: inline-block;
+	float: right;
+	margin-right: 25%;
+}
+
+div.row {
+	margin: 10px;
+	padding: 10px;
+}
+
+div.seatblock.orchestra div.row {
+	margin: 0 auto;
+	width: 100px; 
+}
 
 span.seat {
 	border: 1px solid red;
